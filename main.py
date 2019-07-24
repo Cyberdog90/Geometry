@@ -1,4 +1,3 @@
-# Geometry Pattern Creation Code ver.1.0.1
 import cv2 as cv
 import numpy as np
 import random
