@@ -5,6 +5,16 @@ import random
 import time
 
 
+def main():
+    img = cv.imread("img.png", 1)
+    c_img = edge_detection(img)
+    division_list = division(c_img, 8)
+    coordinate_list = coordinate(division_list)
+    polygon_map = polygon(coordinate_list)
+    trim_polygon_map = polygon_map[256:2048, 256:2048]
+    cv.imwrite("./rendered/rendered.png", trim_polygon_map)
+
+
 def edge_detection(self):
     img_blur = cv.GaussianBlur(self, ksize=(5, 5), sigmaX=3)
     c_img = cv.Canny(img_blur, 50, 120)
@@ -159,16 +169,6 @@ def draw(self, base, i, color):
 
     cv.imwrite("./progress/rendered{}.png".format(i), base)
     return base
-
-
-def main():
-    img = cv.imread("img.png", 1)
-    c_img = edge_detection(img)
-    division_list = division(c_img, 8)
-    coordinate_list = coordinate(division_list)
-    polygon_map = polygon(coordinate_list)
-    trim_polygon_map = polygon_map[256:2048, 256:2048]
-    cv.imwrite("./rendered/rendered.png", trim_polygon_map)
 
 
 if __name__ == "__main__":
